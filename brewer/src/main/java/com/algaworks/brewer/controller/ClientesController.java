@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.algaworks.brewer.model.Cliente;
-
+/**
+ * 
+ * @author JGaray
+ *
+ */
 @Controller
 public class ClientesController {
 	
