@@ -44,7 +44,6 @@
 		
 		<!-- Spring Data JPA -->
 		<spring-data-jpa.version>1.10.2.RELEASE</spring-data-jpa.version>
-		
 	</properties>
 
 	<build>
@@ -89,13 +88,12 @@
 			<scope>compile</scope>
 			<exclusions>
 				<exclusion>
-				 <groupId>commons-logging</groupId>
-				 <artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
 				</exclusion>
 			</exclusions>
-			
 		</dependency>
-
+		
 		<!-- Servlet API -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -133,7 +131,7 @@
     		<artifactId>thymeleaf-layout-dialect</artifactId>
     		<version>${thymeleaf-layout-dialect.version}</version>
 		</dependency>
-				
+		
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>

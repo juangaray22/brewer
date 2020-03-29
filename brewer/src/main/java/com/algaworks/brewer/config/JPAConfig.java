@@ -15,14 +15,10 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.algaworks.brewer.model.Cerveja;
+import com.algaworks.brewer.repository.Cervejas;
 
-/**
- * 
- * @author JGaray
- *
- */
 @Configuration
-@EnableJpaRepositories(basePackageClasses = Cerveja.class)
+@EnableJpaRepositories(basePackageClasses = Cervejas.class)
 public class JPAConfig {
 
 	@Bean
@@ -58,5 +54,5 @@ public class JPAConfig {
 		transactionManager.setEntityManagerFactory(entityManagerFactory);
 		return transactionManager;
 	}
-
+	
 }
