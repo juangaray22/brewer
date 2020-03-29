@@ -1,11 +1,19 @@
 package com.algaworks.brewer.model;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author JGaray
  *
  */
-public class Cliente {
+public class Cliente implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7303284949985554386L;
+	
 	private String id;
 	private String nome;
 	private String cpf_cnpj;
