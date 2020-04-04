@@ -36,7 +36,7 @@ public class Cerveja implements Serializable {
 	private Long codigo;
 	
 	@NotBlank(message = "SKU é obrigatório")
-	@Column(name="sky")
+	@Column(name="sku")
 	private String sku;
 	
 	@NotBlank(message = "Nome é obrigatório")
@@ -51,8 +51,8 @@ public class Cerveja implements Serializable {
 	private BigDecimal valor;
 	
 	@Column(name="teor_alcoolico")
-	private BigDecimal teorAloolico;
-	
+	private BigDecimal teorAlcoolico;
+	                    
 	@Column(name="comissao")
 	private BigDecimal comissao; 
 	
@@ -79,11 +79,12 @@ public class Cerveja implements Serializable {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
-	public BigDecimal getTeorAloolico() {
-		return teorAloolico;
+	
+	public BigDecimal getTeorAlcoolico() {
+		return teorAlcoolico;
 	}
-	public void setTeorAloolico(BigDecimal teorAloolico) {
-		this.teorAloolico = teorAloolico;
+	public void setTeorAlcoolico(BigDecimal teorAlcoolico) {
+		this.teorAlcoolico = teorAlcoolico;
 	}
 	public BigDecimal getComissao() {
 		return comissao;

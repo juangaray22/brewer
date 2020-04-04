@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -18,6 +20,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.algaworks.brewer.controller.CervejasController;
+import com.algaworks.brewer.controller.converter.EstiloConverter;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -27,10 +30,10 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
  *
  */
 @Configuration
-@ComponentScan(basePackageClasses = {CervejasController.class})
+@ComponentScan(basePackageClasses = { CervejasController.class })
 @EnableWebMvc
-public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware{
-	
+public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationContextAware {
+
 	private ApplicationContext applicationContext;
 
 	@Override
@@ -51,7 +54,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.setEnableSpringELCompiler(true);
 		engine.setTemplateResolver(templateResolver());
-		
+
 		engine.addDialect(new LayoutDialect());
 		return engine;
 	}
@@ -64,10 +67,17 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		resolver.setTemplateMode(TemplateMode.HTML);
 		return resolver;
 	}
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 	}
 
+	@Bean
+	public FormattingConversionService mvcConversionService() {
+		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
+		conversionService.addConverter(new EstiloConverter());
+
+		return conversionService;
+	}
 }

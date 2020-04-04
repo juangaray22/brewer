@@ -31,12 +31,12 @@
 			<div class="row">
 				<div class="col-sm-2  form-group">
 					<label for="sku">SKU</label>
-					<input id="sku" type="text" class="form-control" th:field="*{sky}"/>
+					<input id="sku" type="text" class="form-control" th:field="*{sku}"/>
 				</div>
 				
 				<div class="col-sm-10  form-group">
 					<label for="nome">Nome</label>
-					<input id="nome" type="text" class="form-control" th:field="*{nome}" />
+					<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
 				</div>
 			</div>
 
@@ -49,7 +49,7 @@
 				<div class="col-sm-3  form-group">
 					<label for="estilo">Estilo</label>
 					<div class="bw-field-action">
-						<select id="estilo" class="form-control">
+						<select id="estilo" class="form-control" th:field="*{estilo}">
 							<option value="">Selecione o estilo</option>
 							<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}" th:text="${estilo.nome}">Pale lager</option>
 						</select>
@@ -64,7 +64,7 @@
 				
 				<div class="col-sm-3  form-group">
 					<label for="sabor">Sabor</label>
-					<select id="sabor" class="form-control" th:field="*{sabor}" >
+					<select id="sabor" class="form-control" th:field="*{sabor}">
 						<option value="">Selecione o sabor</option>
 						<option th:each="sabor : ${sabores}" th:value="${sabor}" th:text="${sabor.descricao}">Adocicada</option>
 					</select>
@@ -73,7 +73,7 @@
 				<div class="col-sm-3  form-group">
 					<label for="teorAlcoolico">Teor alcoólico</label>
 					<div class="input-group">
-						<input id="teorAlcoolico" type="text" class="form-control  js-decimal" th:field="*{teorAlocoolico}"/>
+						<input id="teorAlcoolico" type="text" class="form-control  js-decimal" th:field="*{teorAlcoolico}"/>
 						<div class="input-group-addon">%</div>
 					</div>
 				</div>
@@ -83,7 +83,7 @@
 					<div>
 						<th:block th:each="origem : ${origens}">
 							<div class="radio  radio-inline">
-								<input th:id="|id_${origem}|" type="radio" th:value="${origem}" th:field="*{origem}" > 
+								<input th:id="|id_${origem}|" type="radio" th:value="${origem}" th:field="*{origem}"> 
 								<label th:for="|id_${origem}|" th:text="${origem.descricao}">Nacional</label>
 							</div>
 						</th:block>
