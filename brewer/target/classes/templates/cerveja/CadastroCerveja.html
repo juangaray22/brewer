@@ -1,3 +1,4 @@
+  
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:th="http://www.thymeleaf.org"
@@ -121,6 +122,10 @@
 	
 	<div th:replace="estilo/CadastroRapidoEstilo :: modal"></div>
 </section>
+
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/javascripts/estilo.cadastro-rapido.js}"></script>
+</th:block>
 	
 </body>
 </html>
