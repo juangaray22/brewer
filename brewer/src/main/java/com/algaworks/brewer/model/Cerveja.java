@@ -13,6 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -43,33 +47,48 @@ public class Cerveja implements Serializable {
 	@Column(name="sku")
 	private String sku;
 	
-	@NotBlank(message = "Nome é obrigatório")
+	@NotBlank(message = "O nome é obrigatório")
 	@Column(name="nome")
 	private String nome;
 	
+	@NotBlank(message = "A descrição e obrigatoria")
 	@Size(min = 1, max = 50, message = "O tamanho da descrição deve estar entre 1 e 50")
 	@Column(name="descricao")
 	private String descricao;
 	
+	@NotNull(message = "O valor e Obrigatorio")
+	@DecimalMin(value = "0.01", message= "O valor da cerveja deve ser maior que R$: 0,01")
+	@DecimalMax(value = "9999999.99", message= "O valor da cerveja deve ser menor que R$: 9.999.999,99")
 	@Column(name="valor")
 	private BigDecimal valor;
 	
+	@NotNull(message = "O teor alcoolico e obrigatorio")
+	@DecimalMax(value = "100.0", message= "O valor do teor alcoolico deve ser igual ou menor que 100")
 	@Column(name="teor_alcoolico")
 	private BigDecimal teorAlcoolico;
-	                    
+	
+	@DecimalMax(value = "100.0", message= "A comissao deve ser igual ou menor que 100")
 	@Column(name="comissao")
 	private BigDecimal comissao; 
 	
+	@Max(value = 9999, message="A quantidade em estoque deve ser menor que 9999")
 	@Column(name="quantidade_estoque")
 	private Integer quantidadeEstoque;
 	
+	@NotNull(message = "A origem e obrigatoria")
 	@Enumerated(EnumType.STRING)
 	@Column(name="origem")
 	private Origem origem;
 	
+	@NotNull(message = "O sabor e obrigatorio")
 	@Enumerated(EnumType.STRING)
 	@Column(name="sabor")
 	private Sabor sabor;
+	
+	@ManyToOne
+	@JoinColumn(name = "codigo_estilo")
+	@NotNull(message = "O estilo e obrigatorio")
+	private Estilo estilo;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -120,9 +139,6 @@ public class Cerveja implements Serializable {
 	public void setEstilo(Estilo estilo) {
 		this.estilo = estilo;
 	}
-	@ManyToOne
-	@JoinColumn(name = "codigo_estilo")
-	private Estilo estilo;
 	
 	public String getDescricao() {
 		return descricao;
