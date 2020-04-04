@@ -17,7 +17,6 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -48,6 +47,7 @@ public class Cerveja implements Serializable {
 	private String sku;
 	
 	@NotBlank(message = "O nome é obrigatório")
+	@Size(min = 1, max = 20, message = "O tamanho do nome da cerveja deve estar entre 1 e 20")
 	@Column(name="nome")
 	private String nome;
 	
@@ -56,7 +56,7 @@ public class Cerveja implements Serializable {
 	@Column(name="descricao")
 	private String descricao;
 	
-	@NotNull(message = "O valor e Obrigatorio")
+	@NotNull(message = "O valor e obrigatorio")
 	@DecimalMin(value = "0.01", message= "O valor da cerveja deve ser maior que R$: 0,01")
 	@DecimalMax(value = "9999999.99", message= "O valor da cerveja deve ser menor que R$: 9.999.999,99")
 	@Column(name="valor")
@@ -67,10 +67,12 @@ public class Cerveja implements Serializable {
 	@Column(name="teor_alcoolico")
 	private BigDecimal teorAlcoolico;
 	
+	@NotNull(message = "O comissao e obrigatorio")
 	@DecimalMax(value = "100.0", message= "A comissao deve ser igual ou menor que 100")
 	@Column(name="comissao")
 	private BigDecimal comissao; 
 	
+	@NotNull(message = "O quantidade e obrigatorio")
 	@Max(value = 9999, message="A quantidade em estoque deve ser menor que 9999")
 	@Column(name="quantidade_estoque")
 	private Integer quantidadeEstoque;
