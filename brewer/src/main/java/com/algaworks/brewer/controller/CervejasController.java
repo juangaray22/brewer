@@ -47,7 +47,7 @@ public class CervejasController {
 		}
 
 		cadastroCervejaService.salvar(cerveja);
-		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
+		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso! ");
 		return new ModelAndView("redirect:/cervejas/novo");
 	}
 
