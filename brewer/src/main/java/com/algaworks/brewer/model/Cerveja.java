@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -32,9 +34,6 @@ import com.algaworks.brewer.validation.SKU;
 @Table(name = "cerveja")
 public class Cerveja implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 4050939105194249550L;
 
 	@Id
@@ -91,6 +90,11 @@ public class Cerveja implements Serializable {
 	@JoinColumn(name = "codigo_estilo")
 	@NotNull(message = "O estilo e obrigatorio")
 	private Estilo estilo;
+
+	@PrePersist @PreUpdate
+	private void prePersistUpdate() {
+		sku = sku.toUpperCase();
+	}
 	
 	public Long getCodigo() {
 		return codigo;
