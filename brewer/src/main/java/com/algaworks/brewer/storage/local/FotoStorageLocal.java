@@ -47,8 +47,16 @@ private static final Logger logger = LoggerFactory.getLogger(FotoStorageLocal.cl
 				throw new RuntimeException("Erro salvando a foto na pasta temporária", e);
 			}
 		}
-		
 		return novoNome;
+	}
+	
+	@Override
+	public byte[] recuperarFotoTemporaria(String nome) {
+		try {
+			return Files.readAllBytes(this.localTemporario.resolve(nome));
+		} catch (IOException e) {
+			throw new RuntimeException("Erro lendo a foto temporaria", e);
+		}
 	}
 	
 	private void criarPastas() {
@@ -76,4 +84,5 @@ private static final Logger logger = LoggerFactory.getLogger(FotoStorageLocal.cl
 		return novoNome;
 	}
 
+	
 }
