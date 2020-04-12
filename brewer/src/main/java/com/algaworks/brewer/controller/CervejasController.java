@@ -75,5 +75,5 @@ public class CervejasController {
 		mv.addObject("pagina", paginaWrapper);
 		return mv;
 	}
-	
+		
 }
